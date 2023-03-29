@@ -1,7 +1,18 @@
 import Link from "next/link";
 import { GiBookshelf } from "react-icons/gi";
 
-export default function Navbar() {
+async function getCategories() {
+  const response = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/categories?populate=*", {
+    cache: "no-store",
+    next: {
+      revalidate: 0,
+    },
+  });
+  return response.json();
+}
+
+export default async function Navbar() {
+  const categories = await getCategories();
   return (
     <navbar className="navbar bg-base-100">
       <div className="navbar-start ">
@@ -12,7 +23,7 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-      <div className="navbar-end  font-extrabold">
+      <div className="navbar-end ">
         <Link href="/" className="btn btn-ghost btn-md rounded-btn">
           Home
         </Link>
@@ -22,7 +33,34 @@ export default function Navbar() {
         <Link href="/contact" className="btn btn-ghost btn-md rounded-btn">
           Contact
         </Link>
+        <Dropdown categories={categories} />
       </div>
     </navbar>
   );
 }
+
+const Dropdown = ({ categories }) => {
+  return (
+    <ul className="menu menu-horizontal btn btn-ghost btn-md rounded-btn px-1">
+      <li tabIndex={0}>
+        <a>
+          Categories
+          <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+            <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+          </svg>
+        </a>
+        <ul className="p-2 shadow-lg">
+          {categories.data?.map((data, index) => {
+            return (
+              <li key={index}>
+                <Link legacyBehavior href={`/category/${data.attributes.slug}`}>
+                  <a>{data.attributes.name}</a>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </li>
+    </ul>
+  );
+};

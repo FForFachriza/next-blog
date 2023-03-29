@@ -1,6 +1,6 @@
 export default function UpperSection() {
   return (
-    <section className="grid grid-cols-2 h-60 my-4">
+    <section className="grid grid-cols-2 h-[360px] my-4">
       <section className="flex items-center">
         <h1 className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-700 via-gray-900 to-black">
          ./FForFachriza Blog

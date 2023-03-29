@@ -65,7 +65,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`px-20 ${gothic.className}`}>
-        <NextTopLoader />
+        <NextTopLoader
+        color="#000000" />
         <Navbar />
         {children}
       </body>
