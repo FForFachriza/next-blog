@@ -4,7 +4,7 @@ export default function Card({ image, image_alt, title, headline, tags, link }) 
   return (
     <div className="card bg-base-100 hover:shadow-lg transition-shadow duration-300">
       <figure className="aspect-video">
-        <img src={image} alt={image_alt} />
+        <img className="rounded-tl-3xl rounded-tr-3xl" src={image} alt={image_alt} />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{title}</h2>

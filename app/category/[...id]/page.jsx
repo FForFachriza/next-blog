@@ -25,8 +25,6 @@ export default async function Page({ params }) {
   }
 
   const categories = await getCategories(id);
-  console.info(categories.data.attributes.posts);
-
   return (
     <>
       <section className="flex group flex-col pt-4 max-w-fit cursor-default ">
@@ -35,7 +33,7 @@ export default async function Page({ params }) {
           <div className="divider group-hover:w-60 w-0 transition-all duration-300 -translate-y-4 before:bg-black after:bg-black"></div>
         </h2>
       </section>
-      <div className="grid grid-cols-4">
+      <div className="grid grid-cols-4 gap-6">
         {categories.data?.attributes?.posts?.data.map((data, index) => {
           return (
             <Card

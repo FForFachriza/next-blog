@@ -14,7 +14,7 @@ async function getCategories() {
 export default async function Navbar() {
   const categories = await getCategories();
   return (
-    <navbar className="navbar bg-base-100">
+    <navbar className="navbar sticky top-0 z-[9999] backdrop-blur-sm">
       <div className="navbar-start ">
         <div className="text-2xl btn btn-ghost btn-md rounded-btn">
           <div className="flex flex-row space-x-4">

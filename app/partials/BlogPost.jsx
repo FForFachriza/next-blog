@@ -14,7 +14,7 @@ export default async function BlogPost() {
   const posts = await getPosts();
   console.log(posts);
   return (
-    <section className="grid grid-cols-3 gap-8 mb-12">
+    <section className="grid grid-cols-3 gap-6 mb-12">
 
       {posts.data?.map((data, index) => {
         return (
